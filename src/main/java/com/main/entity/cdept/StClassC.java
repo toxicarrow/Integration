@@ -14,7 +14,7 @@ public class StClassC {
     private int id;
     private String cno;
     private String sno;
-    private String grd;
+    private Integer grd;
 
     public String getCno() {
         return cno;
@@ -32,11 +32,11 @@ public class StClassC {
         this.sno = sno;
     }
 
-    public String getGrd() {
+    public Integer getGrd() {
         return grd;
     }
 
-    public void setGrd(String grd) {
+    public void setGrd(Integer grd) {
         this.grd = grd;
     }
 }
