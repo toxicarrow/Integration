@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    primary:
+      url: jdbc:mysql://localhost:3306/cdept?useSSL=false
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+      max-active: 20
+      max-idle: 8
+      min-idle: 8
+      initialize-size: 10
+#    secondary:
+#      url: jdbc:sqlite:F:\\adept.db
+#      driver-class-name: org.sqlite.JDBC
+    eps:
+      url: jdbc:sqlite:F:\\adept.db
+      driver-class-name: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+mybatis:
+  type-aliases-package: com.main.entity.adept
