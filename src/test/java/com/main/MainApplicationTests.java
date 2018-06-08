@@ -22,7 +22,7 @@ public class MainApplicationTests {
 	}
 	@Test
 	public void testAccountC() {
-		System.out.println(accountCDao.findByAcc("a").getPassword());
+		System.out.println(accountCDao.findOne("a").getPassword());
 	}
 
 }

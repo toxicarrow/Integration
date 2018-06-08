@@ -19,6 +19,7 @@ spring:
       driver-class-name: org.sqlite.JDBC
   jpa:
     hibernate:
+#      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
