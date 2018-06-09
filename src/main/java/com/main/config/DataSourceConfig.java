@@ -42,25 +42,32 @@ public class DataSourceConfig {
 //    }
 
     /**
-     * sqlite数据库，使用mybatis
+     * 数据库，使用mybatis
      * (hibernate对sqlite支持太差)
      * 即A院系
      * dao在mapper包下
      * 实体在entity下adept
      * @return
      */
-    @Bean(name = "epsDataSource")
-    @Qualifier("epsDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.eps")
-    public DataSource ADataSource() {
+    @Bean(name = "thirdDataSource")
+    @Qualifier("thirdDataSource")
+    @Primary
+    @ConfigurationProperties(prefix = "spring.datasource.third")
+    public DataSource secondaryDataSource() {
         return DataSourceBuilder.create().build();
     }
-
-    @Bean(name = "epsJdbcTemplate")
-    @Primary
-    @Qualifier("epsJdbcTemplate")
-    public NamedParameterJdbcTemplate primaryJdbcTemplate(
-            @Qualifier("epsDataSource") DataSource dataSource) {
-        return new NamedParameterJdbcTemplate(dataSource);
-    }
+//    @Bean(name = "epsDataSource")
+//    @Qualifier("epsDataSource")
+//    @ConfigurationProperties(prefix = "spring.datasource.eps")
+//    public DataSource ADataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
+//
+//    @Bean(name = "epsJdbcTemplate")
+//    @Primary
+//    @Qualifier("epsJdbcTemplate")
+//    public NamedParameterJdbcTemplate primaryJdbcTemplate(
+//            @Qualifier("epsDataSource") DataSource dataSource) {
+//        return new NamedParameterJdbcTemplate(dataSource);
+//    }
 }

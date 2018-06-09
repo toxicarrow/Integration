@@ -14,9 +14,14 @@ spring:
 #    secondary:
 #      url: jdbc:sqlite:F:\\adept.db
 #      driver-class-name: org.sqlite.JDBC
-    eps:
-      url: jdbc:sqlite:F:\\adept.db
-      driver-class-name: org.sqlite.JDBC
+    third:
+      url:
+      username:
+      password:
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    eps:
+#      url: jdbc:sqlite:F:\\adept.db
+#      driver-class-name: org.sqlite.JDBC
   jpa:
     hibernate:
 #      ddl-auto: update
