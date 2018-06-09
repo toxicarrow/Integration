@@ -42,7 +42,7 @@ public class AServiceImpl implements AService{
         List<StClassA> stClassList=stClassADao.findAllByCno(classNo);
         List<StudentA> studentAList=new ArrayList<>();
         for(int i=0;i<stClassList.size();i++){
-            studentAList.add(studentADao.findOne(stClassList.get(i).getSno()));
+            studentAList.add(studentADao.findBySno(stClassList.get(i).getSno()));
         }
         return studentAList;
     }
@@ -57,14 +57,14 @@ public class AServiceImpl implements AService{
         List<StClassA> stClassList=stClassADao.findAllBySno(studentNo);
         List<ClassA> classAList=new ArrayList<>();
         for(int i=0;i<stClassList.size();i++){
-            classAList.add(classADao.findOne(stClassList.get(i).getCno()));
+            classAList.add(classADao.findByCno(stClassList.get(i).getCno()));
         }
         return classAList;
     }
 
     @Override
     public AccountA findByAccount(String account) {
-        return accountADao.findOne(account);
+        return accountADao.findByAcc(account);
     }
 
     @Override

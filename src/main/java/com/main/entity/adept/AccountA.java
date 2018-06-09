@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Table(name = "account")
 public class AccountA implements Serializable{
     @Id
-    @GeneratedValue
     private String acc;
 
     private String password;
@@ -24,6 +23,7 @@ public class AccountA implements Serializable{
     public void setPermission(String permission) {
         this.permission = permission;
     }
+
 
     public String getAcc() {
         return acc;

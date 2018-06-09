@@ -9,12 +9,12 @@ import javax.persistence.Table;
 @Table(name = "student")
 public class StudentA {
     @Id
-    @GeneratedValue
     private String sno;
     private String snm;
     private String sde;
     private String account;
     private String sex;
+
 
     public String getSno() {
         return sno;

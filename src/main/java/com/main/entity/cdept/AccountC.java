@@ -11,7 +11,6 @@ import java.util.Date;
 @Table(name = "account")
 public class AccountC implements Serializable{
     @Id
-    @GeneratedValue
     private String acc;
     private String password;
     private Date createDate;

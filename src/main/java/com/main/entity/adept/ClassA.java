@@ -10,13 +10,13 @@ import java.io.Serializable;
 @Table(name = "class")
 public class ClassA implements Serializable{
     @Id
-    @GeneratedValue
     private String cno;
     private String cnm;
     private String cpt;//学分
     private String tec;
     private String pla;
     private String share;
+
 
     public String getCno() {
         return cno;

@@ -11,7 +11,6 @@ import java.util.Date;
 @Table(name = "student")
 public class StudentC implements Serializable{
     @Id
-    @GeneratedValue
     private String sno;
     private String snm;
     private String sde;
