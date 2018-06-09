@@ -1,21 +1,19 @@
-package com.main.entity.cdept;
+package com.main.entity.adept;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "student")
-public class StudentC implements Serializable{
+public class StudentA {
     @Id
     @GeneratedValue
     private String sno;
     private String snm;
     private String sde;
-    private String pwd;
+    private String account;
     private String sex;
 
     public String getSno() {
@@ -42,12 +40,12 @@ public class StudentC implements Serializable{
         this.sde = sde;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getAccount() {
+        return account;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getSex() {
@@ -56,16 +54,5 @@ public class StudentC implements Serializable{
 
     public void setSex(String sex) {
         this.sex = sex;
-    }
-
-    @Override
-    public String toString() {
-        return "StudentC{" +
-                "sno='" + sno + '\'' +
-                ", snm='" + snm + '\'' +
-                ", sde='" + sde + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", sex='" + sex + '\'' +
-                '}';
     }
 }

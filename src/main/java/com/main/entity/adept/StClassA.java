@@ -1,21 +1,28 @@
-package com.main.entity.cdept;
+package com.main.entity.adept;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.PipedReader;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "stClass")
-public class StClassC implements Serializable{
+public class StClassA implements Serializable{
     @Id
     @GeneratedValue
     private int id;
     private String cno;
     private String sno;
     private Integer grd;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCno() {
         return cno;
@@ -39,15 +46,5 @@ public class StClassC implements Serializable{
 
     public void setGrd(Integer grd) {
         this.grd = grd;
-    }
-
-    @Override
-    public String toString() {
-        return "StClassC{" +
-                "id=" + id +
-                ", cno='" + cno + '\'' +
-                ", sno='" + sno + '\'' +
-                ", grd=" + grd +
-                '}';
     }
 }

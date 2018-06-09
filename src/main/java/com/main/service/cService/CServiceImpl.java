@@ -38,11 +38,16 @@ public class CServiceImpl implements CService{
     }
 
     @Override
+    public List<ClassC> getAllShareClass() {
+        return classCDao.findAllByShare("y");
+    }
+
+    @Override
     public List<StudentC> getAllChooseStudents(String classNo) {
         List<StClassC> stClassList=stClassCDao.findAllByCno(classNo);
         List<StudentC> studentCList=new ArrayList<>();
         for(int i=0;i<stClassList.size();i++){
-            studentCList.add(studentCDao.getOne(stClassList.get(i).getSno()));
+            studentCList.add(studentCDao.findOne(stClassList.get(i).getSno()));
         }
         return studentCList;
     }
@@ -57,7 +62,7 @@ public class CServiceImpl implements CService{
         List<StClassC> stClassList=stClassCDao.findAllBySno(studentNo);
         List<ClassC> classList=new ArrayList<>();
         for(int i=0;i<stClassList.size();i++){
-            classList.add(classCDao.getOne(stClassList.get(i).getCno()));
+            classList.add(classCDao.findOne(stClassList.get(i).getCno()));
         }
         return classList;
     }

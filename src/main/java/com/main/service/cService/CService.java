@@ -14,6 +14,7 @@ public interface CService {
      */
     List<ClassC> getAllClass();
 
+    List<ClassC> getAllShareClass();
 
     /**
      * 获得选某课的所有学生

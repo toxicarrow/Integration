@@ -1,4 +1,4 @@
-package com.main.entity.cdept;
+package com.main.entity.adept;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,29 +8,15 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "class")
-public class ClassC implements Serializable{
+public class ClassA implements Serializable{
     @Id
     @GeneratedValue
     private String cno;
     private String cnm;
-    private String ctm;//学时
     private String cpt;//学分
     private String tec;
     private String pla;
     private String share;
-
-    @Override
-    public String toString() {
-        return "ClassC{" +
-                "cno='" + cno + '\'' +
-                ", cnm='" + cnm + '\'' +
-                ", ctm='" + ctm + '\'' +
-                ", cpt='" + cpt + '\'' +
-                ", tec='" + tec + '\'' +
-                ", pla='" + pla + '\'' +
-                ", share='" + share + '\'' +
-                '}';
-    }
 
     public String getCno() {
         return cno;
@@ -46,14 +32,6 @@ public class ClassC implements Serializable{
 
     public void setCnm(String cnm) {
         this.cnm = cnm;
-    }
-
-    public String getCtm() {
-        return ctm;
-    }
-
-    public void setCtm(String ctm) {
-        this.ctm = ctm;
     }
 
     public String getCpt() {

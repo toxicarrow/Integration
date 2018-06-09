@@ -15,18 +15,15 @@ spring:
 #      url: jdbc:sqlite:F:\\adept.db
 #      driver-class-name: org.sqlite.JDBC
     third:
-      url:
-      username:
-      password:
+      url: jdbc:sqlserver://localhost:1433;database=adept
+      username: sa
+      password: 123456
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 #    eps:
 #      url: jdbc:sqlite:F:\\adept.db
 #      driver-class-name: org.sqlite.JDBC
   jpa:
+    open-in-view: true
     hibernate:
-#      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-
-mybatis:
-  type-aliases-package: com.main.entity.adept

@@ -1,0 +1,42 @@
+package com.main.service.aService;
+
+import com.main.entity.adept.AccountA;
+import com.main.entity.adept.ClassA;
+import com.main.entity.adept.StudentA;
+import com.main.entity.cdept.AccountC;
+import com.main.entity.cdept.ClassC;
+import com.main.entity.cdept.StudentC;
+
+import java.util.List;
+
+public interface AService {
+    /**
+     * 获取所有课程信息
+     * @return
+     */
+    List<ClassA> getAllClass();
+
+    List<ClassA> getAllShareClass();
+
+    /**
+     * 获得选某课的所有学生
+     * @param classNo
+     * @return
+     */
+    List<StudentA> getAllChooseStudents(String classNo);
+
+    List<StudentA> getAllStudents();
+
+    /**
+     * 获得某学生所有课
+     * @param studentNo
+     * @return
+     */
+    List<ClassA> getAllChooseClass(String studentNo);
+    AccountA findByAccount(String account);
+
+    void chooseClass(String sno,String cno);
+    void cancelClass(String sno,String cno);
+
+    StudentA getStudentByAccount(String account);
+}
