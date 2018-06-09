@@ -39,4 +39,14 @@ public class StClassC {
     public void setGrd(Integer grd) {
         this.grd = grd;
     }
+
+    @Override
+    public String toString() {
+        return "StClassC{" +
+                "id=" + id +
+                ", cno='" + cno + '\'' +
+                ", sno='" + sno + '\'' +
+                ", grd=" + grd +
+                '}';
+    }
 }

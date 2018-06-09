@@ -56,4 +56,15 @@ public class StudentC {
     public void setSex(String sex) {
         this.sex = sex;
     }
+
+    @Override
+    public String toString() {
+        return "StudentC{" +
+                "sno='" + sno + '\'' +
+                ", snm='" + snm + '\'' +
+                ", sde='" + sde + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", sex='" + sex + '\'' +
+                '}';
+    }
 }

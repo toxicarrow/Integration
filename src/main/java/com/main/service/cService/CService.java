@@ -9,12 +9,10 @@ import java.util.List;
 
 public interface CService {
     /**
-     * 分页获取所有课程信息
-     * @param pageNum 页数
-     * @param pageSize 页大小
+     * 获取所有课程信息
      * @return
      */
-    Page<ClassC> getAllClass(int pageNum, int pageSize);
+    List<ClassC> getAllClass();
 
 
     /**
@@ -24,7 +22,7 @@ public interface CService {
      */
     List<StudentC> getAllChooseStudents(String classNo);
 
-    Page<StudentC> getAllStudents(int pageNum, int pageSize);
+    List<StudentC> getAllStudents();
 
     /**
      * 获得某学生所有课

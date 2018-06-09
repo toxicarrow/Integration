@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +33,8 @@ public class CServiceImpl implements CService{
         return accountCDao.findOne(account);
     }
     @Override
-    public Page<ClassC> getAllClass(int pageNum, int pageSize) {
-        Pageable pageable= new PageRequest(pageNum,pageSize);
-        return classCDao.findAll(pageable);
+    public List<ClassC> getAllClass() {
+        return classCDao.findAll();
     }
 
     @Override
@@ -48,9 +48,8 @@ public class CServiceImpl implements CService{
     }
 
     @Override
-    public Page<StudentC> getAllStudents(int pageNum, int pageSize) {
-        Pageable pageable= new PageRequest(pageNum,pageSize);
-        return studentCDao.findAll(pageable);
+    public List<StudentC> getAllStudents() {
+        return studentCDao.findAll();
     }
 
     @Override
@@ -72,6 +71,7 @@ public class CServiceImpl implements CService{
     }
 
     @Override
+    @Transactional
     public void cancelClass(String sno, String cno) {
         stClassCDao.deleteByCnoAndSno(cno,sno);
     }

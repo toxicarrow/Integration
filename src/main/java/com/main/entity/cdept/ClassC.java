@@ -18,6 +18,19 @@ public class ClassC {
     private String pla;
     private String share;
 
+    @Override
+    public String toString() {
+        return "ClassC{" +
+                "cno='" + cno + '\'' +
+                ", cnm='" + cnm + '\'' +
+                ", ctm='" + ctm + '\'' +
+                ", cpt='" + cpt + '\'' +
+                ", tec='" + tec + '\'' +
+                ", pla='" + pla + '\'' +
+                ", share='" + share + '\'' +
+                '}';
+    }
+
     public String getCno() {
         return cno;
     }
