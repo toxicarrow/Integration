@@ -5,7 +5,7 @@ spring:
 #    static-locations: classpath:/templates
   datasource:
     primary:
-      url: jdbc:mysql://localhost:3306/cdept?useSSL=false
+      url: jdbc:mysql://120.78.69.160:3306/cdept?useSSL=false
       username: root
       password: 123456
       driver-class-name: com.mysql.jdbc.Driver
@@ -19,9 +19,9 @@ spring:
       password: test
       driver-class-name: oracle.jdbc.driver.OracleDriver
     third:
-      url: jdbc:sqlserver://localhost:1433;database=adept
+      url: jdbc:sqlserver://120.78.69.160:1433;database=testDb
       username: sa
-      password: 123456
+      password: yh123456~
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 #    eps:
 #      url: jdbc:sqlite:F:\\adept.db

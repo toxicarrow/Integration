@@ -35,7 +35,6 @@ public class DataSourceConfig {
 
     @Bean(name = "secondaryDataSource")
     @Qualifier("secondaryDataSource")
-    @Primary
     @ConfigurationProperties(prefix = "spring.datasource.secondary")
     public DataSource secondaryDataSource() {
         return DataSourceBuilder.create().build();
