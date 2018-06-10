@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:element name="classes">
+        <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="class" type="classType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="classType">
+        <xs:sequence>
+            <xs:element name="课程编号" type="课程编号Type"/>
+            <xs:element name="课程名称" type="课程名称Type"/>
+            <xs:element name="课时" type="课时Type"/>
+            <xs:element name="学分" type="学分Type"/>
+            <xs:element name="授课老师" type="授课老师Type"/>
+            <xs:element name="授课地点" type="授课地点Type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="课程编号Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="9"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="课程名称Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="40"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="课时Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="学分Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="授课老师Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="授课地点Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="40"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

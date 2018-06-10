@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:element name="choices">
+        <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="choice" type="choiceType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="choiceType">
+        <xs:sequence>
+            <xs:element name="课程编号" type="课程编号Type"/>
+            <xs:element name="学号" type="学号Type"/>
+            <xs:element name="得分" type="得分Type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="课程编号Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="9"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="学号Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="得分Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

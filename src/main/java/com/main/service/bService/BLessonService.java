@@ -3,6 +3,7 @@ package com.main.service.bService;
 import java.util.List;
 
 import com.main.entity.bdept.*;
+import org.dom4j.Document;
 
 public interface BLessonService {
 	//查询数据
@@ -19,4 +20,9 @@ public interface BLessonService {
 	
 	public boolean addLesson(LessonB lesson);
 	public boolean deleteLessonById(String lid);
+
+	Document sendShareClass();
+	Boolean chooseShareClass(String sno,String cno);
+	List<LessonB> get_AC_Class();
+	Boolean solveShareChoose(Document xmlChoice);
 }

@@ -3,6 +3,7 @@ package com.main.service.cService;
 import com.main.entity.cdept.AccountC;
 import com.main.entity.cdept.ClassC;
 import com.main.entity.cdept.StudentC;
+import org.dom4j.Document;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -38,4 +39,9 @@ public interface CService {
 
     void chooseClass(String sno,String cno);
     void cancelClass(String sno,String cno);
+
+    Document sendShareClass();
+    Boolean chooseShareClass(String sno,String cno);
+    List<ClassC> get_AB_Class();
+    Boolean solveShareChoose(Document xmlChoice);
 }

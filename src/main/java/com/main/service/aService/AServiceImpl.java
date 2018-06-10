@@ -10,11 +10,17 @@ import com.main.entity.adept.StClassA;
 import com.main.entity.adept.StudentA;
 import com.main.entity.cdept.StClassC;
 import com.main.entity.cdept.StudentC;
+import com.main.service.dService.DService;
+import com.main.util.XMLHelper;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -27,6 +33,10 @@ public class AServiceImpl implements AService{
     private StudentADao studentADao;
     @Autowired
     private StClassADao stClassADao;
+    @Autowired
+    private DService dService;
+
+    private XMLHelper xmlHelper = new XMLHelper();
     @Override
     public List<ClassA> getAllClass() {
         return classADao.findAll();
@@ -113,4 +123,113 @@ public class AServiceImpl implements AService{
     public StudentA getStudentByAccount(String account) {
         return studentADao.findByAccount(account);
     }
+
+    @Override
+    public Document sendShareClass(){
+        List<ClassA> classAList = getAllShareClass();
+        Document doc = DocumentHelper.createDocument();
+        Element root = doc.addElement("classes");
+        for(ClassA ca:classAList){
+            Element emp = root.addElement("class");
+            emp.addElement("课程编号").setText(ca.getCno());
+            emp.addElement("课程名称").setText(ca.getCnm());
+            emp.addElement("课时").setText("1");
+            emp.addElement("学分").setText(ca.getCpt());
+            emp.addElement("授课老师").setText(ca.getTec());
+            emp.addElement("授课地点").setText(ca.getPla());
+        }
+        return doc;
+    }
+
+    @Override
+    public Boolean chooseShareClass(String sno,String cno){
+        Document doc = DocumentHelper.createDocument();
+        Element root = doc.addElement("choices");
+        Element emp = root.addElement("choice");
+        emp.addElement("课程编号").setText(cno);
+        emp.addElement("学生编号").setText(sno);
+        emp.addElement("成绩").setText("0");
+        if(cno.startsWith("b")){
+           return dService.chooseShareClassFromB(doc);
+        }
+        else if(cno.startsWith("c")){
+            return dService.chooseShareClassFromC(doc);
+        }
+        return false;
+    }
+
+    @Override
+    public List<ClassA> get_BC_Class(){
+        List<ClassA> shareClass = new ArrayList();
+        List<Document> classXmls = dService.getShareClassForA();
+        for(Document xml:classXmls){
+            if(!xmlHelper.validateXml(xml,"adept\\Aclass.xsd")){
+                return null;
+            }
+            Element root = xml.getRootElement();
+            for(Iterator i=root.elementIterator();i.hasNext();){
+                Element temp = (Element)i.next();
+                ClassA classA = new ClassA();
+                for(Iterator j = temp.elementIterator();j.hasNext();){
+                    Element node = (Element) j.next();
+                    String value = node.getName();
+                    switch (value){
+                        case "课程编号":
+                            classA.setCno(node.getText());
+                            break;
+                        case "课程名称":
+                            classA.setCnm(node.getText());
+                            break;
+                        case "学分":
+                            classA.setCpt(node.getText());
+                            break;
+                        case "授课老师":
+                            classA.setTec(node.getText());
+                            break;
+                        case "授课地点":
+                            classA.setPla(node.getText());
+                            break;
+                        default:
+                            System.out.println("wrong xml "+xml.asXML());
+                    }
+                }
+                shareClass.add(classA);
+            }
+        }
+        return shareClass;
+    }
+
+    @Override
+    public Boolean solveShareChoose(Document xmlChoice){
+        if(!xmlHelper.validateXml(xmlChoice,"adept\\Achoice.xsd")){
+            return false;
+        }
+        Element root = xmlChoice.getRootElement();
+        String sno = null;
+        String cno = null;
+        for(Iterator i=root.elementIterator();i.hasNext();) {
+            Element temp = (Element) i.next();
+            for (Iterator j = temp.elementIterator(); j.hasNext(); ) {
+                Element node = (Element) j.next();
+                String value = node.getName();
+                switch (value) {
+                    case "课程编号":
+                        cno = node.getText();
+                        break;
+                    case "学生编号":
+                        sno = node.getText();
+                        break;
+                }
+            }
+        }
+        if ((sno != null) && (cno != null)) {
+            chooseClass(sno,cno);
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
+
 }

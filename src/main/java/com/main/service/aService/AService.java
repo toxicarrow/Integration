@@ -6,6 +6,7 @@ import com.main.entity.adept.StudentA;
 import com.main.entity.cdept.AccountC;
 import com.main.entity.cdept.ClassC;
 import com.main.entity.cdept.StudentC;
+import org.dom4j.Document;
 
 import java.util.List;
 
@@ -43,4 +44,9 @@ public interface AService {
 
     String getSnoByAccount(String acc);
     boolean hasChoose(String sno,String cno);
+
+    Document sendShareClass();
+    Boolean chooseShareClass(String sno,String cno);
+    List<ClassA> get_BC_Class();
+    Boolean solveShareChoose(Document xmlChoice);
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:element name="choices">
+        <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="choice" type="choiceType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="choiceType">
+        <xs:sequence>
+            <xs:element name="Cno" type="CnoType"/>
+            <xs:element name="Sno" type="SnoType"/>
+            <xs:element name="Grd" type="GrdType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="SnoType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CnoType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="9"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GrdType">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
