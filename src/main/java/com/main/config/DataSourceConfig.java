@@ -32,14 +32,14 @@ public class DataSourceConfig {
      * * 实体在entity下bdept
      * @return
      */
-//
-//    @Bean(name = "secondaryDataSource")
-//    @Qualifier("secondaryDataSource")
-//    @Primary
-//    @ConfigurationProperties(prefix = "spring.datasource.secondary")
-//    public DataSource secondaryDataSource() {
-//        return DataSourceBuilder.create().build();
-//    }
+
+    @Bean(name = "secondaryDataSource")
+    @Qualifier("secondaryDataSource")
+    @Primary
+    @ConfigurationProperties(prefix = "spring.datasource.secondary")
+    public DataSource secondaryDataSource() {
+        return DataSourceBuilder.create().build();
+    }
 
     /**
      * 数据库，使用mybatis
@@ -52,7 +52,7 @@ public class DataSourceConfig {
     @Bean(name = "thirdDataSource")
     @Qualifier("thirdDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.third")
-    public DataSource secondaryDataSource() {
+    public DataSource thirdDataSource() {
         return DataSourceBuilder.create().build();
     }
 //    @Bean(name = "epsDataSource")

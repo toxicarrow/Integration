@@ -13,9 +13,11 @@ spring:
       max-idle: 8
       min-idle: 8
       initialize-size: 10
-#    secondary:
-#      url: jdbc:sqlite:F:\\adept.db
-#      driver-class-name: org.sqlite.JDBC
+    secondary:
+      url: jdbc:oracle:thin:@localhost:1521:oracle
+      username: test
+      password: test
+      driver-class-name: oracle.jdbc.driver.OracleDriver
     third:
       url: jdbc:sqlserver://localhost:1433;database=adept
       username: sa
