@@ -9,4 +9,5 @@ public interface StudentADao extends JpaRepository<StudentA,String> {
     StudentA findBySno(String sno);
     StudentA findByAccount(String account);
     List<StudentA> findAll();
+    StudentA findBySnm(String snm);
 }

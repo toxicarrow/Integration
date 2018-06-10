@@ -40,4 +40,7 @@ public interface AService {
     void cancelClass(String sno,String cno);
 
     StudentA getStudentByAccount(String account);
+
+    String getSnoByAccount(String acc);
+    boolean hasChoose(String sno,String cno);
 }

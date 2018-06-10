@@ -53,6 +53,13 @@ public class CServiceImpl implements CService{
     }
 
     @Override
+    public boolean hasChoose(String sno, String cno) {
+        return stClassCDao.existsByCnoAndSno(cno,sno);
+    }
+
+
+
+    @Override
     public List<StudentC> getAllStudents() {
         return studentCDao.findAll();
     }

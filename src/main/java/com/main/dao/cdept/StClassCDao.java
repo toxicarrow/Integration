@@ -15,4 +15,6 @@ public interface StClassCDao extends JpaRepository<StClassC, Integer> {
     StClassC findByCnoAndSno(String cno,String sno);
     @Transactional
     void deleteByCnoAndSno(String cno,String sno);
+
+    boolean existsByCnoAndSno(String cno,String sno);
 }

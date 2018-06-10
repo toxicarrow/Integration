@@ -26,6 +26,8 @@ public interface CService {
 
     List<StudentC> getAllStudents();
 
+    boolean hasChoose(String sno,String cno);
+
     /**
      * 获得某学生所有课
      * @param studentNo

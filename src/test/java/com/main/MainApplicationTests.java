@@ -2,6 +2,7 @@ package com.main;
 
 
 import com.main.dao.adept.AccountADao;
+import com.main.dao.adept.ClassADao;
 import com.main.dao.adept.StudentADao;
 import com.main.dao.cdept.AccountCDao;
 import com.main.dao.cdept.StudentCDao;
@@ -32,6 +33,8 @@ public class MainApplicationTests {
 	@Autowired
 	private AccountCDao accountCDao;
 	@Autowired
+	private ClassADao classADao;
+	@Autowired
 	private CService cService;
 	@Autowired
 	private AService aService;
@@ -44,7 +47,15 @@ public class MainApplicationTests {
 //			accountA.setPassword("123456");
 //			accountADao.save(accountA);
 	}
-
+	@Test
+	public void testClassA() {
+		System.out.println(classADao.findAll().size());
+//		String name=getRandomString(4);
+//			AccountA accountA=new AccountA();
+//			accountA.setAcc(name);
+//			accountA.setPassword("123456");
+//			accountADao.save(accountA);
+	}
 //	@Test
 //	public void addAccountA() {
 ////		System.out.println(accountADao.findOne("alan").getPassword());

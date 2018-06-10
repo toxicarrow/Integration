@@ -63,6 +63,20 @@ public class AServiceImpl implements AService{
     }
 
     @Override
+    public boolean hasChoose(String sno, String cno) {
+        StClassA stClassA=stClassADao.findBySnoAndCno(sno,cno);
+        if(stClassA==null){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String getSnoByAccount(String acc) {
+        return studentADao.findBySnm(acc).getSno();
+    }
+
+    @Override
     public boolean login(String account, String pwd) {
 
         AccountA accountA=accountADao.findByAcc(account);
