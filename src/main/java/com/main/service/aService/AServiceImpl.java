@@ -63,6 +63,20 @@ public class AServiceImpl implements AService{
     }
 
     @Override
+    public boolean login(String account, String pwd) {
+
+        AccountA accountA=accountADao.findByAcc(account);
+        if(accountA==null){
+            return false;
+        }
+        if(accountA.getPassword().equals(pwd)){
+
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public AccountA findByAccount(String account) {
         return accountADao.findByAcc(account);
     }

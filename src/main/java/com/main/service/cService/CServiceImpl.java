@@ -67,6 +67,19 @@ public class CServiceImpl implements CService{
         return classList;
     }
 
+
+    @Override
+    public boolean login(String account,String pwd) {
+        StudentC studentC=studentCDao.findOne(account);
+        if(studentC==null){
+            return false;
+        }
+        if(studentC.getPwd().equals(pwd)){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void chooseClass(String sno, String cno) {
         StClassC stClassC=new StClassC();

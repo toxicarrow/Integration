@@ -18,6 +18,7 @@ public interface AService {
 
     List<ClassA> getAllShareClass();
 
+    boolean login(String account,String pwd);
     /**
      * 获得选某课的所有学生
      * @param classNo

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface CService {
+    boolean login(String account,String pwd);
     /**
      * 获取所有课程信息
      * @return
