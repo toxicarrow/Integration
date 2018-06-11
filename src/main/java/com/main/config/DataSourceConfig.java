@@ -26,19 +26,19 @@ public class DataSourceConfig {
         return DataSourceBuilder.create().build();
     }
 
-    /**
-     * oracle数据库，jpa第二数据源
-     * 即B院系
-     * * 实体在entity下bdept
-     * @return
-     */
-
-    @Bean(name = "secondaryDataSource")
-    @Qualifier("secondaryDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.secondary")
-    public DataSource secondaryDataSource() {
-        return DataSourceBuilder.create().build();
-    }
+//    /**
+//     * oracle数据库，jpa第二数据源
+//     * 即B院系
+//     * * 实体在entity下bdept
+//     * @return
+//     */
+//
+//    @Bean(name = "secondaryDataSource")
+//    @Qualifier("secondaryDataSource")
+//    @ConfigurationProperties(prefix = "spring.datasource.secondary")
+//    public DataSource secondaryDataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
 
     /**
      * 数据库，使用mybatis

@@ -7,11 +7,13 @@ import com.main.dao.adept.StudentADao;
 import com.main.dao.cdept.AccountCDao;
 import com.main.dao.cdept.StudentCDao;
 import com.main.entity.adept.AccountA;
+import com.main.entity.adept.ClassA;
 import com.main.entity.adept.StClassA;
 import com.main.entity.adept.StudentA;
 import com.main.entity.cdept.StudentC;
 import com.main.service.aService.AService;
 import com.main.service.cService.CService;
+import com.main.service.dService.DService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Random;
 
 @RunWith(SpringRunner.class)
@@ -38,6 +41,8 @@ public class MainApplicationTests {
 	private CService cService;
 	@Autowired
 	private AService aService;
+	@Autowired
+	private DService dService;
 	@Test
 	public void testAccountA() {
 		System.out.println(accountADao.findOne("alan").getPassword());
@@ -164,7 +169,7 @@ public class MainApplicationTests {
 //	}
 	@Test
 	public void testAService() {
-		System.out.println(aService.getAllChooseClass("a1502").size());
+		System.out.println(aService.getAllChooseClass("a1502").get(0).getCpt());
 		System.out.println(aService.getAllChooseStudents("a006").size());
 //		cService.cancelClass("15010","c008");
 	}
@@ -185,5 +190,17 @@ public class MainApplicationTests {
 		System.out.println(cService.getAllChooseClass("15002").size());
 //		System.out.println(cService.getAllChooseStudents("c006").size());
 //		cService.cancelClass("15010","c008");
+	}
+
+	@Test
+	public void testServiceC(){
+		System.out.println(cService.getAllClass().get(0).getCpt());
+	}
+
+	@Test
+	public void testD(){
+		//System.out.println(dService.getShareClassForA().get(0).asXML());
+		List<ClassA> classAList = aService.get_BC_Class();
+		System.out.println(classAList.get(0).getCnm());
 	}
 }

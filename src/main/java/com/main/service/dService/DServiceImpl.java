@@ -1,7 +1,7 @@
 package com.main.service.dService;
 
 import com.main.service.aService.AService;
-import com.main.service.bService.BLessonService;
+//import com.main.service.bService.BLessonService;
 import com.main.service.cService.CService;
 import com.main.util.XMLHelper;
 import org.dom4j.Document;
@@ -18,8 +18,8 @@ import java.util.List;
 public class DServiceImpl implements DService{
     @Autowired
     private AService aService;
-    @Autowired
-    private BLessonService bLessonService;
+//    @Autowired
+//    private BLessonService bLessonService;
     @Autowired
     private CService cService;
 
@@ -30,10 +30,10 @@ public class DServiceImpl implements DService{
         Document xmlC = xmlHelper.transform(cService.sendShareClass(),"dService\\formatClass.xsl");
         List<Document> shareClass = new ArrayList<>();
         xmlC = xmlHelper.transform(xmlC,"dService\\Aclass.xsl");
-        Document xmlB = xmlHelper.transform(bLessonService.sendShareClass(),"dService\\formatClass.xsl");
-        xmlB = xmlHelper.transform(xmlB,"dService\\Aclass.xsl");
+        //Document xmlB = xmlHelper.transform(bLessonService.sendShareClass(),"dService\\formatClass.xsl");
+        //xmlB = xmlHelper.transform(xmlB,"dService\\Aclass.xsl");
         shareClass.add(xmlC);
-        shareClass.add(xmlB);
+        //shareClass.add(xmlB);
         return shareClass;
     }
 
@@ -54,10 +54,10 @@ public class DServiceImpl implements DService{
         Document xmlA = xmlHelper.transform(aService.sendShareClass(),"dService\\formatClass.xsl");
         List<Document> shareClass = new ArrayList<>();
         xmlA = xmlHelper.transform(xmlA,"dService\\Cclass.xsl");
-        Document xmlB = xmlHelper.transform(bLessonService.sendShareClass(),"dService\\formatClass.xsl");
-        xmlB = xmlHelper.transform(xmlB,"dService\\Cclass.xsl");
+        //Document xmlB = xmlHelper.transform(bLessonService.sendShareClass(),"dService\\formatClass.xsl");
+        //xmlB = xmlHelper.transform(xmlB,"dService\\Cclass.xsl");
         shareClass.add(xmlA);
-        shareClass.add(xmlB);
+        //shareClass.add(xmlB);
         return shareClass;
     }
 
@@ -70,9 +70,10 @@ public class DServiceImpl implements DService{
 
     @Override
     public boolean chooseShareClassFromB(Document chooseXml){
-        Document docSource = xmlHelper.transform(chooseXml,"dService\\formatChoice.xsl");
-        Document docResult = xmlHelper.transform(docSource,"dService\\Bchoice.xsl");
-        return bLessonService.solveShareChoose(docResult);
+        //Document docSource = xmlHelper.transform(chooseXml,"dService\\formatChoice.xsl");
+        //Document docResult = xmlHelper.transform(docSource,"dService\\Bchoice.xsl");
+        //return bLessonService.solveShareChoose(docResult);
+        return false;
     }
 
     @Override
