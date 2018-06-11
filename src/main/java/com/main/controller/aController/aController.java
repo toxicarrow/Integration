@@ -63,7 +63,7 @@ public class aController {
     @RequestMapping("/cancelShare")
     public String cancelShareClass(@RequestParam String cno,HttpServletRequest request){
         String sno=(String) request.getSession().getAttribute("adept");
-        aService.chooseShareClass(sno,cno);
+        aService.cancelShareClass(sno,cno);
         return "success";
     }
     @RequestMapping("/home")

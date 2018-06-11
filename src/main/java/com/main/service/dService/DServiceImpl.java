@@ -56,7 +56,7 @@ public class DServiceImpl implements DService{
         xmlA = xmlHelper.transform(xmlA,"dService\\Cclass.xsl");
         //Document xmlB = xmlHelper.transform(bLessonService.sendShareClass(),"dService\\formatClass.xsl");
         //xmlB = xmlHelper.transform(xmlB,"dService\\Cclass.xsl");
-        System.out.println(xmlA.asXML());
+        //System.out.println(xmlA.asXML());
         shareClass.add(xmlA);
         //shareClass.add(xmlB);
         return shareClass;
@@ -105,5 +105,26 @@ public class DServiceImpl implements DService{
         xmla = xmlHelper.transform(xmla,"dService\\Cchoice.xsl");
         StnChoice.add(xmla);
         return StnChoice;
+    }
+
+    @Override
+    public boolean cancelShareClassFromA(Document xmlCancel){
+        Document docSource = xmlHelper.transform(xmlCancel,"dService\\formatChoice.xsl");
+        Document docResult = xmlHelper.transform(docSource,"dService\\Achoice.xsl");
+
+        return aService.solveCancelShare(docResult);
+    }
+
+    @Override
+    public boolean cancelShareClassFromB(Document xmlCancel){
+        return false;
+    }
+
+    @Override
+    public boolean cancelShareClassFromC(Document xmlCancel){
+        Document docSource = xmlHelper.transform(xmlCancel,"dService\\formatChoice.xsl");
+        Document docResult = xmlHelper.transform(docSource,"dService\\Cchoice.xsl");
+
+        return cService.solveCancelShare(docResult);
     }
 }

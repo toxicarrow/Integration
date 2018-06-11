@@ -46,4 +46,6 @@ public interface CService {
     Boolean solveShareChoose(Document xmlChoice);
     Document sendShareChoice(String sno);
     boolean hasChooseShare(String sno,String cno);
+    boolean cancelShareClass(String sno,String cno);
+    boolean solveCancelShare(Document xmlCancel);
 }

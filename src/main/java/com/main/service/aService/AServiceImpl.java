@@ -284,4 +284,50 @@ public class AServiceImpl implements AService{
         return false;
     }
 
+    @Override
+    public boolean cancelShareClass(String sno,String cno){
+        Document doc = DocumentHelper.createDocument();
+        Element root = doc.addElement("choices");
+        Element emp = root.addElement("choice");
+        emp.addElement("课程编号").setText(cno);
+        emp.addElement("学生编号").setText(sno);
+        if(cno.startsWith("b")){
+            return dService.cancelShareClassFromB(doc);
+        }
+        else if(cno.startsWith("c")){
+            return dService.cancelShareClassFromC(doc);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean solveCancelShare(Document XMLCancel){
+        if(!xmlHelper.validateXml(XMLCancel,"adept\\Achoice.xsd")){
+            return false;
+        }
+        Element root = XMLCancel.getRootElement();
+        String sno = null;
+        String cno = null;
+        for(Iterator i=root.elementIterator();i.hasNext();) {
+            Element temp = (Element) i.next();
+            for (Iterator j = temp.elementIterator(); j.hasNext(); ) {
+                Element node = (Element) j.next();
+                String value = node.getName();
+                switch (value) {
+                    case "课程编号":
+                        cno = node.getText();
+                        break;
+                    case "学生编号":
+                        sno = node.getText();
+                        break;
+                }
+            }
+        }
+        if ((sno != null) && (cno != null)) {
+            cancelClass(sno,cno);
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

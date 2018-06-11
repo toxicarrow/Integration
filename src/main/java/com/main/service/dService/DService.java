@@ -28,4 +28,10 @@ public interface DService {
     List<Document> getStnChoiceForB(String sno);
 
     List<Document> getStnChoiceForC(String sno);
+
+    boolean cancelShareClassFromA(Document chooseXml);
+
+    boolean cancelShareClassFromB(Document chooseXml);
+
+    boolean cancelShareClassFromC(Document chooseXml);
 }

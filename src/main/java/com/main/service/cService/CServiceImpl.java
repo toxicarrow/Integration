@@ -275,4 +275,52 @@ public class CServiceImpl implements CService{
         }
         return false;
     }
+
+    @Override
+    public boolean cancelShareClass(String sno,String cno){
+        Document doc = DocumentHelper.createDocument();
+        Element root = doc.addElement("choices");
+        Element emp = root.addElement("choice");
+        emp.addElement("Cno").setText(cno);
+        emp.addElement("Sno").setText(sno);
+        if(cno.startsWith("a")){
+            return dService.cancelShareClassFromA(doc);
+        }
+        else if(cno.startsWith("b")){
+            return dService.cancelShareClassFromB(doc);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean solveCancelShare(Document XMLCancel){
+        if(!xmlHelper.validateXml(XMLCancel,"cdept\\Cchoice.xsd")){
+            return false;
+        }
+        Element root = XMLCancel.getRootElement();
+        String sno = null;
+        String cno = null;
+        for(Iterator i=root.elementIterator();i.hasNext();) {
+            Element temp = (Element) i.next();
+            for (Iterator j = temp.elementIterator(); j.hasNext(); ) {
+                Element node = (Element) j.next();
+                String value = node.getName();
+                switch (value) {
+                    case "Cno":
+                        cno = node.getText();
+                        break;
+                    case "Sno":
+                        sno = node.getText();
+                        break;
+                }
+            }
+        }
+        if ((sno != null) && (cno != null)) {
+            cancelClass(sno,cno);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
