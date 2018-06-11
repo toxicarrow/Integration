@@ -10,9 +10,9 @@
                     <Sno>
                         <xsl:value-of select="sid"/>
                     </Sno>
-                    <Grd>
-                        <xsl:value-of select="score"/>
-                    </Grd>
+                    <!--<Grd>-->
+                        <!--<xsl:value-of select="score"/>-->
+                    <!--</Grd>-->
                 </choice>
             </xsl:for-each>
         </choices>

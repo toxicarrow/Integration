@@ -13,7 +13,7 @@
         <xs:sequence>
             <xs:element name="课程编号" type="课程编号Type"/>
             <xs:element name="学生编号" type="学生编号Type"/>
-            <xs:element name="成绩" type="成绩Type"/>
+            <!--<xs:element name="成绩" type="成绩Type"/>-->
         </xs:sequence>
     </xs:complexType>
 
@@ -31,7 +31,7 @@
 
     <xs:simpleType name="成绩Type">
         <xs:restriction base="xs:string">
-            <xs:maxLength value="3"/>
+            <xs:maxLength value="4"/>
         </xs:restriction>
     </xs:simpleType>
 

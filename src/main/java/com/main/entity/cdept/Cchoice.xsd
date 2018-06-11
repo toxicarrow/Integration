@@ -13,7 +13,7 @@
         <xs:sequence>
             <xs:element name="Cno" type="CnoType"/>
             <xs:element name="Sno" type="SnoType"/>
-            <xs:element name="Grd" type="GrdType"/>
+            <!--<xs:element name="Grd" type="GrdType"/>-->
         </xs:sequence>
     </xs:complexType>
 
@@ -30,9 +30,8 @@
     </xs:simpleType>
 
     <xs:simpleType name="GrdType">
-        <xs:restriction base="xs:int">
-            <xs:minInclusive value="0"/>
-            <xs:maxInclusive value="100"/>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="4"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

@@ -137,7 +137,7 @@ public class CServiceImpl implements CService{
         Element emp = root.addElement("choice");
         emp.addElement("Cno").setText(cno);
         emp.addElement("Sno").setText(sno);
-        emp.addElement("Grd").setText("0");
+//        emp.addElement("Grd").setText("0");
         if(cno.startsWith("a")){
             return dService.chooseShareClassFromA(doc);
         }
@@ -228,9 +228,9 @@ public class CServiceImpl implements CService{
         Element root = doc.addElement("choices");
         for(StClassC stClassC:stClassAList){
             Element emp = root.addElement("choice");
-            emp.addElement("课程编号").setText(stClassC.getCno());
-            emp.addElement("学生编号").setText(stClassC.getSno());
-            emp.addElement("成绩").setText(String.valueOf(stClassC.getGrd()));
+            emp.addElement("Cno").setText(stClassC.getCno());
+            emp.addElement("Sno").setText(stClassC.getSno());
+//            emp.addElement("成绩").setText(String.valueOf(stClassC.getGrd()));
         }
         return doc;
     }
@@ -257,8 +257,8 @@ public class CServiceImpl implements CService{
                         case "Sno":
                             stClassA.setSno(node.getText());
                             break;
-                        case "Grd":
-                            stClassA.setGrd(Integer.parseInt(node.getText()));
+//                        case "Grd":
+//                            stClassA.setGrd(Integer.parseInt(node.getText()));
                         default:
                             System.out.println("wrong xml "+xml.asXML());
                     }

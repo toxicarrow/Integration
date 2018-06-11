@@ -52,6 +52,21 @@ public class cController {
         cService.cancelClass(sno,cno);
         return "success";
     }
+
+    @ResponseBody
+    @RequestMapping("/chooseShare")
+    public String chooseShareClass(@RequestParam String cno,HttpServletRequest request){
+        String sno=(String) request.getSession().getAttribute("adept");
+        cService.chooseShareClass(sno,cno);
+        return "success";
+    }
+    @ResponseBody
+    @RequestMapping("/cancelShare")
+    public String cancelShareClass(@RequestParam String cno,HttpServletRequest request){
+        String sno=(String) request.getSession().getAttribute("adept");
+        cService.chooseShareClass(sno,cno);
+        return "success";
+    }
     @RequestMapping("/home")
     public String loginPost(HttpServletRequest request,Model model){
         String sno=(String) request.getSession().getAttribute("adept");
@@ -74,6 +89,20 @@ public class cController {
             }
             classVo.setHasChoose(cService.hasChoose(sno,tclass.getCno()));
             classVoList.add(classVo);
+        }
+
+        List<ClassC> otherShareClasses=cService.get_AB_Class();
+        List<CClassVo> classVoList2=new ArrayList<>();
+        for(int i=0;i<otherShareClasses.size();i++){
+            ClassC tclass=otherShareClasses.get(i);
+            CClassVo classVo=new CClassVo();
+            classVo.setCnm(tclass.getCnm());
+            classVo.setCno(tclass.getCno());
+            classVo.setCpt(tclass.getCpt());
+            classVo.setPla(tclass.getPla());
+            classVo.setTec(tclass.getTec());
+            classVo.setHasChoose(cService.hasChooseShare(sno,tclass.getCno()));
+            classVoList2.add(classVo);
         }
         model.addAttribute("classes",classVoList);
         return "/homeCdept";

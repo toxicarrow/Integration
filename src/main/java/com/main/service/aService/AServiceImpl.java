@@ -148,7 +148,7 @@ public class AServiceImpl implements AService{
         Element emp = root.addElement("choice");
         emp.addElement("课程编号").setText(cno);
         emp.addElement("学生编号").setText(sno);
-        emp.addElement("成绩").setText("0");
+//        emp.addElement("成绩").setText("0");
         if(cno.startsWith("b")){
            return dService.chooseShareClassFromB(doc);
         }
@@ -239,7 +239,7 @@ public class AServiceImpl implements AService{
             Element emp = root.addElement("choice");
             emp.addElement("课程编号").setText(stClassA.getCno());
             emp.addElement("学生编号").setText(stClassA.getSno());
-            emp.addElement("成绩").setText(String.valueOf(stClassA.getGrd()));
+//            emp.addElement("成绩").setText(String.valueOf(stClassA.getGrd()));
         }
         return doc;
     }
@@ -266,8 +266,8 @@ public class AServiceImpl implements AService{
                         case "学生编号":
                             stClassA.setSno(node.getText());
                             break;
-                        case "成绩":
-                            stClassA.setGrd(Integer.parseInt(node.getText()));
+//                        case "成绩":
+//                            stClassA.setGrd(Integer.parseInt(node.getText()));
                         default:
                             System.out.println("wrong xml "+xml.asXML());
                     }

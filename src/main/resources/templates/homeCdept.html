@@ -8,7 +8,7 @@
     <link href="/css/sweetalert2.min.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<div class="col-md-10">
+<div class="col-md-10 col-md-offset-1">
     <header><h1>所有课程</h1></header>
     <table class="table table-hover table-bordered" id="tableMain">
         <th>课程</th>
@@ -34,6 +34,29 @@
         </tr>
     </table>
 </div>
+
+<div class="col-md-10 col-md-offset-1">
+    <header><h1>其它院共享课程</h1></header>
+    <table class="table table-hover table-bordered" id="tableMain2">
+        <th>课程</th>
+        <th>编号</th>
+        <th>学分</th>
+        <th>教师</th>
+        <th>地点</th>
+        <th>操作</th>
+        <tr th:each="subject,subjectStat:${otherclasses}" >
+            <td th:text="${subject.getCnm()}"></td>
+            <td th:text="${subject.getCno()}"></td>
+            <td th:text="${subject.getCpt()}"></td>
+            <td th:text="${subject.getTec()}"></td>
+            <td th:text="${subject.getPla()}"></td>
+            <td>
+                <button class="btn chooseshare btn-primary" th:if="!${subject.isHasChoose()}" th:attr="subject_id=${subject.getCno()}">选课</button>
+                <button class="btn cancelshare btn-danger"  th:if="${subject.isHasChoose()}" th:attr="subject_id=${subject.getCno()}">退课</button>
+            </td>
+        </tr>
+    </table>
+</div>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/sweetalert2.min.js"></script>
@@ -45,6 +68,50 @@
     $.ajax({
         type: 'GET',
         url: "http://localhost:8080/cdept/choose",
+        data: {cno:cno},
+        success: function (data) {
+            swal({
+                title: "成功！",
+                type: "success",
+                timer: 2000,
+                showConfirmButton: false
+            });
+            setTimeout(function () {
+                window.location.reload();
+            }, 2000);
+        }
+    });
+})
+$("#tableMain2").delegate('.chooseshare', 'click', function (e) {
+    //获得数据源
+    var ev = e || window.event;
+    var target = ev.target || ev.srcElement;
+    var cno = target.getAttribute("subject_id");
+    $.ajax({
+        type: 'GET',
+        url: "http://localhost:8080/cdept/chooseShare",
+        data: {cno:cno},
+        success: function (data) {
+            swal({
+                title: "成功！",
+                type: "success",
+                timer: 2000,
+                showConfirmButton: false
+            });
+            setTimeout(function () {
+                window.location.reload();
+            }, 2000);
+        }
+    });
+})
+$("#tableMain2").delegate('.cancelshare', 'click', function (e) {
+    //获得数据源
+    var ev = e || window.event;
+    var target = ev.target || ev.srcElement;
+    var cno = target.getAttribute("subject_id");
+    $.ajax({
+        type: 'GET',
+        url: "http://localhost:8080/cdept/cancelShare",
         data: {cno:cno},
         success: function (data) {
             swal({

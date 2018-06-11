@@ -10,9 +10,9 @@
                     <学生编号>
                         <xsl:value-of select="sid"/>
                     </学生编号>
-                    <成绩>
-                        <xsl:value-of select="score"/>
-                    </成绩>
+                    <!--<成绩>-->
+                        <!--<xsl:value-of select="score"/>-->
+                    <!--</成绩>-->
                 </choice>
             </xsl:for-each>
         </choices>

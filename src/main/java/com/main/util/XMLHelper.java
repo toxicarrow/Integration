@@ -20,7 +20,7 @@ public class XMLHelper {
         try {
             SAXReader saxReader = new SAXReader();
             TransformerFactory factory = TransformerFactory.newInstance();
-            Transformer transformer = factory.newTransformer(new StreamSource(new File("D:\\study\\jicheng\\Integration\\src\\main\\java\\com\\main\\service\\"+stylesheet)));
+            Transformer transformer = factory.newTransformer(new StreamSource(new File("F:\\main\\src\\main\\java\\com\\main\\service\\"+stylesheet)));
             DocumentSource Source = new DocumentSource(source);
             DocumentResult result = new DocumentResult();
             transformer.transform(Source, result);
@@ -40,7 +40,7 @@ public class XMLHelper {
 
             SAXParser parser = factory.newSAXParser();
             parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
-            parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", "file:" + "D:\\study\\jicheng\\Integration\\src\\main\\java\\com\\main\\entity\\"+xsdFilename);
+            parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", "file:" + "F:\\main\\src\\main\\java\\com\\main\\entity\\"+xsdFilename);
 
             SAXValidator validator = new SAXValidator(parser.getXMLReader());
             // 错误处理器，存放验证过程中的错误信息
