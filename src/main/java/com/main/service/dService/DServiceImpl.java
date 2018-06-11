@@ -56,6 +56,7 @@ public class DServiceImpl implements DService{
         xmlA = xmlHelper.transform(xmlA,"dService\\Cclass.xsl");
         //Document xmlB = xmlHelper.transform(bLessonService.sendShareClass(),"dService\\formatClass.xsl");
         //xmlB = xmlHelper.transform(xmlB,"dService\\Cclass.xsl");
+        System.out.println(xmlA.asXML());
         shareClass.add(xmlA);
         //shareClass.add(xmlB);
         return shareClass;

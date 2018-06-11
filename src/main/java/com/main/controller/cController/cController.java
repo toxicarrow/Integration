@@ -105,6 +105,7 @@ public class cController {
             classVoList2.add(classVo);
         }
         model.addAttribute("classes",classVoList);
+        model.addAttribute("otherclasses",classVoList2);
         return "/homeCdept";
     }
 }

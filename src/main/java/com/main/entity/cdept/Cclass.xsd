@@ -21,7 +21,7 @@
 
     <xs:simpleType name="CnoType">
         <xs:restriction base="xs:string">
-            <xs:length value="9"/>
+            <xs:maxLength value="9"/>
         </xs:restriction>
     </xs:simpleType>
 

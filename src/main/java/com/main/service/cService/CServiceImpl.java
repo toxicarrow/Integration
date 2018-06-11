@@ -150,9 +150,10 @@ public class CServiceImpl implements CService{
     @Override
     public List<ClassC> get_AB_Class(){
         List<ClassC> shareClass = new ArrayList();
-        List<Document> classXmls = dService.getShareClassForB();
+        List<Document> classXmls = dService.getShareClassForC();
         for(Document xml:classXmls){
             if(!xmlHelper.validateXml(xml,"cdept\\Cclass.xsd")){
+//                System.out.println(xml.asXML());
                 return null;
             }
             Element root = xml.getRootElement();
@@ -238,7 +239,7 @@ public class CServiceImpl implements CService{
     @Override
     public boolean hasChooseShare(String sno,String cno){
         List<StClassC> stClassCList = new ArrayList<>();
-        List<Document> shareList = dService.getStnChoiceForA(sno);
+        List<Document> shareList = dService.getStnChoiceForC(sno);
         for(Document xml:shareList){
             if(!xmlHelper.validateXml(xml,"cdept\\Cchoice.xsd")){
                 return false;
