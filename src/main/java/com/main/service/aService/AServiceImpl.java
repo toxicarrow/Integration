@@ -120,7 +120,7 @@ public class AServiceImpl implements AService{
     }
 
     @Override
-    public StudentA getStudentByAccount(String account) {
+    public StudentA getStudentByAccunt(String account) {
         return studentADao.findByAccount(account);
     }
 
@@ -228,8 +228,60 @@ public class AServiceImpl implements AService{
         }else{
             return false;
         }
+    }
 
+    @Override
+    public Document sendShareChoice(String sno){
+        List<StClassA> stClassAList = stClassADao.findAllBySno(sno);
+        Document doc = DocumentHelper.createDocument();
+        Element root = doc.addElement("choices");
+        for(StClassA stClassA:stClassAList){
+            Element emp = root.addElement("choice");
+            emp.addElement("课程编号").setText(stClassA.getCno());
+            emp.addElement("学生编号").setText(stClassA.getSno());
+            emp.addElement("成绩").setText(String.valueOf(stClassA.getGrd()));
+        }
+        return doc;
+    }
 
+    @Override
+    public boolean hasChooseShare(String sno,String cno){
+        List<StClassA> stClassAList = new ArrayList<>();
+        List<Document> shareList = dService.getStnChoiceForA(sno);
+        for(Document xml:shareList){
+            if(!xmlHelper.validateXml(xml,"adept\\Achoice.xsd")){
+                return false;
+            }
+            Element root = xml.getRootElement();
+            for(Iterator i=root.elementIterator();i.hasNext();) {
+                Element temp = (Element) i.next();
+                StClassA stClassA = new StClassA();
+                for (Iterator j = temp.elementIterator(); j.hasNext(); ) {
+                    Element node = (Element) j.next();
+                    String value = node.getName();
+                    switch (value) {
+                        case "课程编号":
+                            stClassA.setCno(node.getText());
+                            break;
+                        case "学生编号":
+                            stClassA.setSno(node.getText());
+                            break;
+                        case "成绩":
+                            stClassA.setGrd(Integer.parseInt(node.getText()));
+                        default:
+                            System.out.println("wrong xml "+xml.asXML());
+                    }
+                }
+                stClassAList.add(stClassA);
+            }
+        }
+
+        for(int i =0;i<stClassAList.size();i++){
+            if(stClassAList.get(i).getCno().equals(cno) && stClassAList.get(i).getSno().equals(sno)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

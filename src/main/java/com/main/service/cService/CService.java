@@ -44,4 +44,6 @@ public interface CService {
     Boolean chooseShareClass(String sno,String cno);
     List<ClassC> get_AB_Class();
     Boolean solveShareChoose(Document xmlChoice);
+    Document sendShareChoice(String sno);
+    boolean hasChooseShare(String sno,String cno);
 }

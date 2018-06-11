@@ -152,7 +152,7 @@ public class CServiceImpl implements CService{
         List<ClassC> shareClass = new ArrayList();
         List<Document> classXmls = dService.getShareClassForB();
         for(Document xml:classXmls){
-            if(!xmlHelper.validateXml(xml,"adept\\Cclass.xsd")){
+            if(!xmlHelper.validateXml(xml,"cdept\\Cclass.xsd")){
                 return null;
             }
             Element root = xml.getRootElement();
@@ -192,7 +192,7 @@ public class CServiceImpl implements CService{
 
     @Override
     public Boolean solveShareChoose(Document xmlChoice){
-        if(!xmlHelper.validateXml(xmlChoice,"adept\\Cchoice.xsd")){
+        if(!xmlHelper.validateXml(xmlChoice,"cdept\\Cchoice.xsd")){
             return false;
         }
         Element root = xmlChoice.getRootElement();
@@ -219,7 +219,59 @@ public class CServiceImpl implements CService{
         }else{
             return false;
         }
+    }
 
+    @Override
+    public Document sendShareChoice(String sno){
+        List<StClassC> stClassAList = stClassCDao.findAllBySno(sno);
+        Document doc = DocumentHelper.createDocument();
+        Element root = doc.addElement("choices");
+        for(StClassC stClassC:stClassAList){
+            Element emp = root.addElement("choice");
+            emp.addElement("课程编号").setText(stClassC.getCno());
+            emp.addElement("学生编号").setText(stClassC.getSno());
+            emp.addElement("成绩").setText(String.valueOf(stClassC.getGrd()));
+        }
+        return doc;
+    }
 
+    @Override
+    public boolean hasChooseShare(String sno,String cno){
+        List<StClassC> stClassCList = new ArrayList<>();
+        List<Document> shareList = dService.getStnChoiceForA(sno);
+        for(Document xml:shareList){
+            if(!xmlHelper.validateXml(xml,"cdept\\Cchoice.xsd")){
+                return false;
+            }
+            Element root = xml.getRootElement();
+            for(Iterator i=root.elementIterator();i.hasNext();) {
+                Element temp = (Element) i.next();
+                StClassC stClassA = new StClassC();
+                for (Iterator j = temp.elementIterator(); j.hasNext(); ) {
+                    Element node = (Element) j.next();
+                    String value = node.getName();
+                    switch (value) {
+                        case "Cno":
+                            stClassA.setCno(node.getText());
+                            break;
+                        case "Sno":
+                            stClassA.setSno(node.getText());
+                            break;
+                        case "Grd":
+                            stClassA.setGrd(Integer.parseInt(node.getText()));
+                        default:
+                            System.out.println("wrong xml "+xml.asXML());
+                    }
+                }
+                stClassCList.add(stClassA);
+            }
+        }
+
+        for(int i =0;i<stClassCList.size();i++){
+            if(stClassCList.get(i).getCno().equals(cno) && stClassCList.get(i).getSno().equals(sno)){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -82,4 +82,27 @@ public class DServiceImpl implements DService{
         Document docResult = xmlHelper.transform(docSource,"dService\\Cchoice.xsl");
         return cService.solveShareChoose(docResult);
     }
+
+    @Override
+    public List<Document> getStnChoiceForA(String sno){
+        List<Document> StnChoice = new ArrayList<>();
+        Document xmlc = xmlHelper.transform(cService.sendShareChoice(sno),"dService\\formatChoice.xsl");
+        xmlc = xmlHelper.transform(xmlc,"dService\\Achoice.xsl");
+        StnChoice.add(xmlc);
+        return StnChoice;
+    }
+
+    @Override
+    public List<Document> getStnChoiceForB(String sno){
+        return null;
+    }
+
+    @Override
+    public List<Document> getStnChoiceForC(String sno){
+        List<Document> StnChoice = new ArrayList<>();
+        Document xmla = xmlHelper.transform(aService.sendShareChoice(sno),"dService\\formatChoice.xsl");
+        xmla = xmlHelper.transform(xmla,"dService\\Cchoice.xsl");
+        StnChoice.add(xmla);
+        return StnChoice;
+    }
 }

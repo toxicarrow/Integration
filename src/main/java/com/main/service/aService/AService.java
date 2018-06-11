@@ -40,7 +40,7 @@ public interface AService {
     void chooseClass(String sno,String cno);
     void cancelClass(String sno,String cno);
 
-    StudentA getStudentByAccount(String account);
+    StudentA getStudentByAccunt(String account);
 
     String getSnoByAccount(String acc);
     boolean hasChoose(String sno,String cno);
@@ -49,4 +49,7 @@ public interface AService {
     Boolean chooseShareClass(String sno,String cno);
     List<ClassA> get_BC_Class();
     Boolean solveShareChoose(Document xmlChoice);
+    Document sendShareChoice(String sno);
+    boolean hasChooseShare(String sno,String cno);
+
 }

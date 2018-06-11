@@ -22,4 +22,10 @@ public interface DService {
     boolean chooseShareClassFromB(Document chooseXml);
 
     boolean chooseShareClassFromC(Document chooseXml);
+
+    List<Document> getStnChoiceForA(String sno);
+
+    List<Document> getStnChoiceForB(String sno);
+
+    List<Document> getStnChoiceForC(String sno);
 }
